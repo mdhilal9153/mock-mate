@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Webcam from 'react-webcam'; // THE REAL CAMERA
-import useInterview from './hooks/useInterview'; // YOUR AI BRAIN
+import Webcam from 'react-webcam'; 
+import useInterview from './hooks/useInterview'; 
 import { 
   Video, Mic, MicOff, VideoOff, Play, Square, Eye, Activity, 
   TrendingUp, Lightbulb, Volume2, AlertTriangle 
@@ -8,7 +8,7 @@ import {
 import ReactMarkdown from 'react-markdown';
 
 export default function App() {
-  // 1. PULL IN THE BRAIN (Your Hook)
+  
   const {
     aiResponse,
     loading,
@@ -21,23 +21,21 @@ export default function App() {
     resetTranscript
   } = useInterview();
 
-  // 2. UI STATE (The Skin)
+ 
   const [isVideoOn, setIsVideoOn] = useState(true);
   const [timeElapsed, setTimeElapsed] = useState(0);
-  const [isStressMode, setIsStressMode] = useState(false); // The Stranger Things Toggle
+  const [isStressMode, setIsStressMode] = useState(false); 
 
-  // 3. REAL-TIME STATS LOGIC
-  // Count words to calculate pace
+  
   const wordCount = transcript.split(' ').length;
-  // Calculate WPM (Words Per Minute)
+  
   const wpm = timeElapsed > 0 ? Math.round((wordCount / timeElapsed) * 60) : 0;
-  // Count Filler words (um, uh, like)
+
   const fillerCount = (transcript.match(/\b(um|uh|like|so|actually)\b/gi) || []).length;
-  // Calculate a "Live Confidence Score" based on filler words
-  // Starts at 10, drops by 0.5 for every filler word
+  
   const confidenceScore = Math.max(0, 10 - (fillerCount * 0.5)).toFixed(1);
 
-  // Timer Effect (Only runs when YOU are listening)
+  
   useEffect(() => {
     let interval;
     if (listening) {
