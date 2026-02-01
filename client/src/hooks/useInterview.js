@@ -53,7 +53,7 @@ const useInterview = () => {
     }
 
     try {
-      const { data } = await axios.post('http://localhost:5000/api/chat', {
+      const { data } = await axios.post('https://mock-mate-qp44.onrender.com/api/chat', {
         userMessage: text || "(No speech, just visual analysis)",
         image: imageSrc
       });
